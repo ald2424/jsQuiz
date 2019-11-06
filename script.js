@@ -10,7 +10,7 @@
 var questions = [
     {
       title: "Commonly used data types DO NOT include:",
-      choice: ["strings", "booleans", "alerts", "numbers"],
+      choices: ["strings", "booleans", "alerts", "numbers"],
       answer: "alerts"
     },
     {
@@ -33,17 +33,26 @@ var questions = [
 
   document.getElementById("startB").onclick = function (quiz){
       disableButton();
-      for(var i = 0; i < questions.length; i++){
-          var currentQ = questions[i].title;
-          var currentA = questions[i].choices;
-          displayQuestions.innerHTML = currentQ;
-          displayAnswers.innerHTML = currentA;
+
+      var questionCounter = 0;
+
     
+      var currentQ = questions[questionCounter].title;
+      for(var i = 0; i < questions[questionCounter].choices.length; i++){
+        var answers = document.createElement("button");
+        answers.textContent = questions[questionCounter].choices[i];
+        displayAnswers.appendChild(answers);
       }
-  }
+      
+      displayQuestions.innerHTML = currentQ;
+     }
+
+  
 
   //   disableButton will hide the start button once it has been clicked
   function disableButton(){
     document.getElementById("hide").style.display = "none";
 }
+
+
 
