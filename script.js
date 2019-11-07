@@ -30,26 +30,48 @@ var questions = [
   var displayAnswers = document.querySelector("#a");
   var startB = document.querySelector("#startB");
   var result = document.querySelector("#result");
+  var score = 0;
 
+
+  // Starts quiz when button is pressed
   document.getElementById("startB").onclick = function (quiz){
       disableButton();
+      renderQuiz();
+  }
 
-      var questionCounter = 0;
+  var questionCounter = 0;
+  var lastQ = questions.length - 1;
 
-    
+  function renderQuiz(){
+      
+      var answers;
+
+  // Displays question and displays answers in the form of buttons
       var currentQ = questions[questionCounter].title;
+      displayQuestions.innerHTML = currentQ;
       for(var i = 0; i < questions[questionCounter].choices.length; i++){
-        var answers = document.createElement("button");
+       answers = document.createElement("button");
         answers.textContent = questions[questionCounter].choices[i];
         displayAnswers.appendChild(answers);
       }
-      
-      displayQuestions.innerHTML = currentQ;
-     }
+  }
 
-  
 
-  //   disableButton will hide the start button once it has been clicked
+  // When user clicks button, function checks if the answer is right or wrong.
+  displayAnswers.addEventListener("click", function(event){
+    if(event.target.textContent == questions[questionCounter].answer){
+      alert("good");
+      score++;
+    }
+    else{
+      alert("bad");
+    }
+
+  })
+   
+
+
+//   disableButton will hide the start button once it has been clicked
   function disableButton(){
     document.getElementById("hide").style.display = "none";
 }
