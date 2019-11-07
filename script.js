@@ -1,11 +1,19 @@
-// after the user clicks start quiz, the title and choices of the first object array appears
-// the choices are set up at buttons
-// once the player chooses an answer, the result (correct or wrong) will display based on the answer key in the object array
-// The next object array appears
-// One the user completed the quiz, the results will appear
-// Go back and add timer after these steps are completed
+// TASKS:
+// Once quiz is over, veiw score button appears <--Hide button until quiz is over OR make button after quiz is
+// When user clicks view score, the score is calculated and displayed on screen (not as an alert)
+// Add timer
+// If the user gets the question wrong, the timer loses 10 seconds
+// The faster the user answers, the higher the score (Need to figure out the math here)
+// quiz ends either after all questions are answered or timer runs out
+// User can chose to have their initials saved with their score in local storage
+// Add view high scores button to start of quiz
+// **** BONUS **** instead of start button, create three quizzes - easy, medium, and hard for user to select from
 
 
+
+//****** */ CURRENT ISSUES TO RESOLVES
+// Fixing buttons - try pre-making four buttons in html and only changing the text content in js
+// If that doesn't work, figure out how to delete buttons when the questioncounter goes up
 
 var questions = [
     {
@@ -49,6 +57,8 @@ var questions = [
   // Displays question and displays answers in the form of buttons
       var currentQ = questions[questionCounter].title;
       displayQuestions.innerHTML = currentQ;
+
+
       for(var i = 0; i < questions[questionCounter].choices.length; i++){
        answers = document.createElement("button");
         answers.textContent = questions[questionCounter].choices[i];
@@ -56,8 +66,7 @@ var questions = [
       }
   }
 
-
-  // When user clicks button, function checks if the answer is right or wrong.
+  // When user clicks button, function checks if the answer is right or wrong. And then preceeds to next question
   displayAnswers.addEventListener("click", function(event){
     if(event.target.textContent == questions[questionCounter].answer){
       alert("good");
@@ -67,6 +76,8 @@ var questions = [
       alert("bad");
     }
 
+    questionCounter++;
+    renderQuiz();
   })
    
 
@@ -75,6 +86,11 @@ var questions = [
   function disableButton(){
     document.getElementById("hide").style.display = "none";
 }
+
+
+  // var showScore = document.createElement("button");
+  // showScore.textContent = "Calculate Score";
+  // result.appendChild(showScore);
 
 
 
