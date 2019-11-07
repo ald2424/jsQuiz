@@ -14,6 +14,7 @@
 //****** */ CURRENT ISSUES TO RESOLVES
 // Fixing buttons - try pre-making four buttons in html and only changing the text content in js
 // If that doesn't work, figure out how to delete buttons when the questioncounter goes up
+// Use set attribute to create id for button button.setAttribute("id", ("button" + index));
 
 var questions = [
     {
@@ -39,12 +40,21 @@ var questions = [
   var startB = document.querySelector("#startB");
   var result = document.querySelector("#result");
   var score = 0;
+  var answers;
 
 
   // Starts quiz when button is pressed
   document.getElementById("startB").onclick = function (quiz){
       disableButton();
       renderQuiz();
+      for(var i = 0; i < questions[questionCounter].choices.length; i++){
+        answers = document.createElement("button");
+        //  answers.textContent = questions[questionCounter].choices[i];
+        answers.setAttribute("id", ("btn" + i));
+         displayAnswers.appendChild(answers);
+       }
+
+      
   }
 
   var questionCounter = 0;
@@ -52,18 +62,14 @@ var questions = [
 
   function renderQuiz(){
       
-      var answers;
-
-  // Displays question and displays answers in the form of buttons
+       // Displays question and displays answers in the form of buttons
       var currentQ = questions[questionCounter].title;
       displayQuestions.innerHTML = currentQ;
 
-
-      for(var i = 0; i < questions[questionCounter].choices.length; i++){
-       answers = document.createElement("button");
-        answers.textContent = questions[questionCounter].choices[i];
-        displayAnswers.appendChild(answers);
-      }
+      // for(var i = 0; i < questions[questionCounter].choices.length; i++){
+      // answers.textContent = questions[questionCounter].choices[i];
+      // displayAnswers.appendChild(answers);
+      // }
   }
 
   // When user clicks button, function checks if the answer is right or wrong. And then preceeds to next question
