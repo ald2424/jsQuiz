@@ -12,9 +12,9 @@
 
 
 //****** */ CURRENT ISSUES TO RESOLVES
-// Fixing buttons - try pre-making four buttons in html and only changing the text content in js
-// If that doesn't work, figure out how to delete buttons when the questioncounter goes up
-// Use set attribute to create id for button button.setAttribute("id", ("button" + index));
+// Get render quiz to stop working at the end of questions.length
+// get score alert to appear at that time
+// The have user type in initials and save score and initials in local storage
 
 var questions = [
     {
@@ -47,15 +47,10 @@ var questions = [
   document.getElementById("startB").onclick = function (quiz){
       disableButton();
       renderQuiz();
-      for(var i = 0; i < questions[questionCounter].choices.length; i++){
-        answers = document.createElement("button");
-        //  answers.textContent = questions[questionCounter].choices[i];
-        answers.setAttribute("id", ("btn" + i));
-         displayAnswers.appendChild(answers);
        }
 
       
-  }
+  
 
   var questionCounter = 0;
   var lastQ = questions.length - 1;
@@ -66,10 +61,22 @@ var questions = [
       var currentQ = questions[questionCounter].title;
       displayQuestions.innerHTML = currentQ;
 
-      // for(var i = 0; i < questions[questionCounter].choices.length; i++){
-      // answers.textContent = questions[questionCounter].choices[i];
-      // displayAnswers.appendChild(answers);
-      // }
+      var btn1 = document.getElementById("btn0");
+      var btn2 = document.getElementById("btn1");
+      var btn3 = document.getElementById("btn2");
+      var btn4 = document.getElementById("btn3");
+
+      btn1.textContent = questions[questionCounter].choices[0];
+      btn2.textContent = questions[questionCounter].choices[1];
+      btn3.textContent = questions[questionCounter].choices[2];
+      btn4.textContent = questions[questionCounter].choices[3];
+
+      displayAnswers.appendChild(btn1);
+      displayAnswers.appendChild(btn2);
+      displayAnswers.appendChild(btn3);
+      displayAnswers.appendChild(btn4);
+
+      
   }
 
   // When user clicks button, function checks if the answer is right or wrong. And then preceeds to next question
