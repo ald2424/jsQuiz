@@ -10,12 +10,6 @@
 // **** BONUS **** instead of start button, create three quizzes - easy, medium, and hard for user to select from
 
 
-
-//****** */ CURRENT ISSUES TO RESOLVES
-// Get render quiz to stop working at the end of questions.length
-// get score alert to appear at that time
-// The have user type in initials and save score and initials in local storage
-
 var questions = [
     {
       title: "Commonly used data types DO NOT include:",
@@ -57,6 +51,7 @@ var questions = [
 
   function renderQuiz(){
       
+  if(questionCounter <= lastQ){
        // Displays question and displays answers in the form of buttons
       var currentQ = questions[questionCounter].title;
       displayQuestions.innerHTML = currentQ;
@@ -71,12 +66,20 @@ var questions = [
       btn3.textContent = questions[questionCounter].choices[2];
       btn4.textContent = questions[questionCounter].choices[3];
 
+      btn1.style.display = "inline";
+      btn2.style.display = "inline";
+      btn3.style.display = "inline";
+      btn4.style.display = "inline";
+
       displayAnswers.appendChild(btn1);
       displayAnswers.appendChild(btn2);
       displayAnswers.appendChild(btn3);
       displayAnswers.appendChild(btn4);
 
-      
+  }
+  else{
+    showResults();
+  }
   }
 
   // When user clicks button, function checks if the answer is right or wrong. And then preceeds to next question
@@ -100,10 +103,19 @@ var questions = [
     document.getElementById("hide").style.display = "none";
 }
 
+// function hides quiz questions and choices and makes a calculate score button appear
+function showResults(){
+  displayAnswers.style.display = "none";
+  displayQuestions.style.display = "none";
+  var showScore = document.getElementById("score");
+  var txt = document.getElementById("result");
+  txt.textContent = "Quiz Complete! Press button to see your score."
+  showScore.style.display = "block";
+  showScore.textContent = "Calculate Score";
+  result.appendChild(showScore);
+}
 
-  // var showScore = document.createElement("button");
-  // showScore.textContent = "Calculate Score";
-  // result.appendChild(showScore);
-
-
-
+// Runs when calculate score button is pressed
+document.getElementById("score").onclick = function (quiz){
+  alert(score);
+}
