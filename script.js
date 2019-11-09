@@ -51,6 +51,7 @@ function setTimer(){
     }
     if (secondsLeft == 0){
       clearInterval(timerInt);
+      showResults();
     }
   }, 1000);
 }
@@ -111,6 +112,7 @@ displayAnswers.addEventListener("click", function(event){
     score++;
   }
   else{
+    secondsLeft = secondsLeft - 10;
     alert("bad");
   }
 
