@@ -1,6 +1,10 @@
 // TASKS:
-// User can chose to have their initials saved with their score in local storage
-// Add view high scores button to start of quiz
+// Add score to local storage along with initials
+// Hide veiw scores when quiz is running
+// Add CSS
+// Create a detailed readme with screenshots of code
+
+
 // **** BONUS **** instead of start button, create three quizzes - easy, medium, and hard for user to select from
 
 
@@ -41,8 +45,14 @@ var result = document.querySelector("#result");
 var timerEl = document.querySelector("#timer");
 var message = document.querySelector("#message");
 var scoreBoard = document.querySelector("#scoreBoard");
+var initials = document.querySelector("#input");
+var submitInitials = document.querySelector("#submitInitials");
+var userInput = document.querySelector("#userInput");
+var viewHighScores = document.querySelector("#viewHighScores");
+var initialsList = document.querySelector("#initialsList");
 var score = 0;
 var answers;
+var userArr = [];
 
 
 // Timer Code
@@ -177,4 +187,64 @@ else{
 }
 var final = score + timeBonus;
 scoreBoard.textContent = "Your score is " + final;
+input.style.display = "block";
 }
+
+viewHighScores.addEventListener("click", function(event){
+  event.preventDefault();
+  highScore();
+
+
+})
+
+// SAVE user initials
+submitInitials.addEventListener("click", function(event) {
+  event.preventDefault();
+
+  var userInitials = userInput.value.trim();
+
+  if (userInitials === "") {
+    return;
+  }
+
+  userArr.push(userInitials);
+  userInput.value = "";
+
+  storeInitials();
+});
+
+function storeInitials() {
+  localStorage.setItem("userArr", JSON.stringify(userArr));
+}
+
+// Retrieve saved initials ******This function should be ran when user clicks "See High Scores"
+function highScore() {
+  // Get stored initials from localStorage
+  // Parsing the JSON string to an object
+  var storedInitials = JSON.parse(localStorage.getItem("userArr"));
+
+  // If initials were retrieved from localStorage, update the initials array to it
+  if (storedInitials !== null) {
+    userArr = storedInitials;
+
+
+  }
+  renderUserInitials();
+}
+
+//  puts user initals in a list
+function renderUserInitials(){
+
+initialsList.innerHTML = "";
+ 
+  for (var i = 0; i < userArr.length; i++) {
+    var user = userArr[i];
+
+    var li = document.createElement("li");
+    li.textContent = user;
+    li.setAttribute("data-index", i);
+
+    initialsList.appendChild(li);
+  }
+}
+  
