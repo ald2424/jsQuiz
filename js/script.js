@@ -1,13 +1,3 @@
-// TASKS:
-// Add score to local storage along with initials
-// Hide veiw scores when quiz is running
-// Add CSS
-// Create a detailed readme with screenshots of code
-
-
-// **** BONUS **** instead of start button, create three quizzes - easy, medium, and hard for user to select from
-
-
 var questions = [
   {
     title: "Commonly used data types DO NOT include:",
@@ -50,9 +40,12 @@ var submitInitials = document.querySelector("#submitInitials");
 var userInput = document.querySelector("#userInput");
 var viewHighScores = document.querySelector("#viewHighScores");
 var initialsList = document.querySelector("#initialsList");
+var scoreList = document.querySelector("#scoreList");
 var score = 0;
+var final;
 var answers;
 var userArr = [];
+var scoreArr = [];
 
 
 // Timer Code
@@ -185,7 +178,7 @@ else if(secondsLeft >= 10 && secondsLeft < 20){
 else{
   timeBonus = 0;
 }
-var final = score + timeBonus;
+final = score + timeBonus;
 scoreBoard.textContent = "Your score is " + final;
 input.style.display = "block";
 }
@@ -193,6 +186,7 @@ input.style.display = "block";
 viewHighScores.addEventListener("click", function(event){
   event.preventDefault();
   highScore();
+  highScorePoints();
 
 
 })
@@ -208,9 +202,11 @@ submitInitials.addEventListener("click", function(event) {
   }
 
   userArr.push(userInitials);
+  scoreArr.push(final);
   userInput.value = "";
 
   storeInitials();
+  storeScores();
 });
 
 function storeInitials() {
@@ -245,6 +241,35 @@ initialsList.innerHTML = "";
     li.setAttribute("data-index", i);
 
     initialsList.appendChild(li);
+  }
+}
+  
+
+// ***********************Store high scores*********************************
+
+
+function storeScores() {
+  localStorage.setItem("scoreArr", JSON.stringify(scoreArr));
+}
+
+function highScorePoints() {
+  var storedScores = JSON.parse(localStorage.getItem("scoreArr"));
+
+  if (storedScores !== null) {
+    scoreArr = storedScores;
+   }
+  renderUserScores();
+}
+
+
+function renderUserScores(){
+  scoreList.innerHTML = "";
+  for (var i = 0; i < scoreArr.length; i++) {
+    var score = scoreArr[i];
+    var li = document.createElement("li");
+    li.textContent = score;
+    li.setAttribute("data-index", i);
+    scoreList.appendChild(li);
   }
 }
   
