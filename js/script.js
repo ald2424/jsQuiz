@@ -43,7 +43,6 @@ var initialsList = document.querySelector("#initialsList");
 var scoreList = document.querySelector("#scoreList");
 var score = 0;
 var final;
-var answers;
 var userArr = [];
 var scoreArr = [];
 
