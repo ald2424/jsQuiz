@@ -173,7 +173,9 @@ result.appendChild(showScore);
 
 // Runs when calculate score button is pressed
 document.getElementById("scoreCalc").onclick = function (quiz){
+  // disables button once its been pressed
 document.getElementById("scoreCalc").disabled = "true";
+message.style.display = "none";
 score = score * 10;
 var timeBonus = 0;
 if(secondsLeft >= 40){
