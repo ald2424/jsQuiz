@@ -3,42 +3,68 @@
         <head>
             <meta charset="UTF-8">
             <title>Javascript Quiz</title>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
             <link rel="stylesheet" type="text/css" href="assets/style.css">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         </head>
         <body>
-            <h1>Javascript Quiz</h1>
-            <div id="hide">
-                <button type="button" id="startB">Start Quiz</button>
-            </div>
-            <div>
-                <button type="button" id="viewHighScores">View High Scores</button>
-            </div>
-            <div id="timer"></div>
-            <div id="message">
-                <ul id="initialsList"></ul>
-                <ul id="scoreList"></ul>
-            </div>
-            <div id = "q">
-            </div>
-            <div id = "a">
-                <button type="button" id="btn0" style="display: none"></button>
-                <button type="button" id="btn1" style="display: none"></button>
-                <button type="button" id="btn2" style="display: none"></button>
-                <button type="button" id="btn3" style="display: none"></button>
-            </div>
-            <div id = "result">
-                <button type="button" id="score" style="display: none"></button>
-            </div>
-            <div id="scoreBoard"></div>
-            <div>
-                <form id="input" style="display: none;">
-                    <input type="text" class="form-control" id="userInput" placeholder="initials">
-                    <button type="button" id="submitInitials">Submit</button>
-                </form>
-            </div>
-            
-            <script type="text/Javascript" src="js/script.js"></script>
-        </body>
-    </html>
+            <container>
+            <div class="jumbotron center">
+                    <div class="row">
+                        <div class="col-sm">
+                            <button type="button" id="viewHighScores" class="btn btn-primary">View High Scores</button>
+                        </div>
+                        <div class="col-sm">
+                        </div>
+                        <div class="col-sm" id="timer">
+                            Time: 00
+                        </div>
+                    </div>    
+
+                <h1 class="display-4 text-primary">Javascript Quiz</h1>
+                <p class="lead">Test your knowledge on the basics of Javascript by taking this quiz!</p>
+                <hr class="my-4">
+                <p>This is a timed 5 question quiz. The faster you complete the quiz, the better the score. But careful! If you get a question wrong you lose time off the clock!</p>
+                
+                <div id="hide"><button type="button" id="startB" class="btn btn-primary btn-lg">Start Quiz</button></div>
+                
+                <div class="row">
+                    <div class="col-5"></div>
+                    <div class="col-1">
+                        <ul id="initialsList"></ul>
+                    </div>  
+                    <div class="col-1">
+                        <ul id="scoreList" ></ul>
+                    </div>
+                    <div class="col-5"></div>
+                </div>
+                <div id = "q"></div>
+                
+                <div id = "a">
+                        <button type="button" id="btn0" style="display: none"></button>
+                        <button type="button" id="btn1" style="display: none"></button>
+                        <button type="button" id="btn2" style="display: none"></button>
+                        <button type="button" id="btn3" style="display: none"></button>
+                </div>
+                    
+                <div id="message"> </div>
+                    
+                <div id = "result"></div>
+                        <button type="button" class="btn btn-primary" id="scoreCalc" style="display: none"></button>
+                        
+                <div id="scoreBoard"></div>
+                        
+                <div class="form-row">
+                        <div class="col-5"></div>
+                        <div class="col-2">
+                            <form id="input" style="display: none;">
+                                <input type="text" class="form-control mx-sm-3" id="userInput" placeholder="initials">
+                                <button type="button" id="submitInitials">Submit</button>
+                            </form>
+                        </div>
+                <div class="col-5"></div>
+             </div>
+         </div>
+     </container>
+        <script type="text/Javascript" src="js/script.js"></script>
+     </body>
+</html>

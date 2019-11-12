@@ -64,6 +64,9 @@ function setTimer(){
       message.textContent = "Time's Up!!"
       showResults();
     }
+    if(secondsLeft <= 10){
+      timerEl.setAttribute("class", "red col-sm");
+    }
   }, 1000);
 }
 
@@ -119,7 +122,7 @@ else{
 // When user clicks button, function checks if the answer is right or wrong. And then preceeds to next question
 displayAnswers.addEventListener("click", function(event){
   if(event.target.textContent == questions[questionCounter].answer){
-    alert("good");
+    message.textContent = "Correct!";
     score++;
   }
   else{
@@ -127,7 +130,7 @@ displayAnswers.addEventListener("click", function(event){
     // If there is over 10 seconds left, 10 seconds are deducted from timer. If there is less, the quiz ends
       if(secondsLeft > 11){
     secondsLeft = secondsLeft - 10;
-    alert("bad");
+    message.textContent = "Wrong!";
       }
       else{
       ended = true;
@@ -151,16 +154,18 @@ function disableButton(){
 function showResults(){
 displayAnswers.style.display = "none";
 displayQuestions.style.display = "none";
-var showScore = document.getElementById("score");
+var showScore = document.getElementById("scoreCalc");
 var txt = document.getElementById("result");
 txt.textContent = "Quiz Complete! Press button to see your score."
 showScore.style.display = "block";
 showScore.textContent = "Calculate Score";
+showScore.style.margin = "auto";
 result.appendChild(showScore);
 }
 
 // Runs when calculate score button is pressed
-document.getElementById("score").onclick = function (quiz){
+document.getElementById("scoreCalc").onclick = function (quiz){
+document.getElementById("scoreCalc").disabled = "true";
 score = score * 10;
 var timeBonus = 0;
 if(secondsLeft >= 40){
@@ -179,7 +184,7 @@ else{
   timeBonus = 0;
 }
 final = score + timeBonus;
-scoreBoard.textContent = "Your score is " + final;
+scoreBoard.textContent = "Your score is " + final + " Enter your initials below to save your score!";
 input.style.display = "block";
 }
 
@@ -194,6 +199,7 @@ viewHighScores.addEventListener("click", function(event){
 // SAVE user initials
 submitInitials.addEventListener("click", function(event) {
   event.preventDefault();
+  document.getElementById("submitInitials").disabled = "true";
 
   var userInitials = userInput.value.trim();
 
@@ -213,7 +219,7 @@ function storeInitials() {
   localStorage.setItem("userArr", JSON.stringify(userArr));
 }
 
-// Retrieve saved initials ******This function should be ran when user clicks "See High Scores"
+// Retrieve saved initials 
 function highScore() {
   // Get stored initials from localStorage
   // Parsing the JSON string to an object
