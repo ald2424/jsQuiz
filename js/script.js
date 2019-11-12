@@ -52,7 +52,7 @@ var scoreArr = [];
 var secondsLeft = 0;
 var ended = false;
 function setTimer(){
-  secondsLeft = (questions.length * 10);
+  secondsLeft = (questions.length * 7);
   var timerInt = setInterval(function(){
     secondsLeft--;
     timerEl.textContent = "Time: " + secondsLeft;
@@ -64,6 +64,7 @@ function setTimer(){
       message.textContent = "Time's Up!!"
       showResults();
     }
+    // Turns Timer red and makes font bigger if 10 seconds or less are remaining
     if(secondsLeft <= 10){
       timerEl.setAttribute("class", "red col-sm");
     }
@@ -75,13 +76,14 @@ function setTimer(){
 // Starts quiz when button is pressed
 document.getElementById("startB").onclick = function (quiz){
     disableButton();
+    disableHighScore();
     setTimer();
     renderQuiz();
      }
 
     
 
-
+// These variables help code cycle through each question
 var questionCounter = 0;
 var lastQ = questions.length - 1;
 
@@ -150,6 +152,12 @@ function disableButton(){
   document.getElementById("hide").style.display = "none";
 }
 
+// Prevents the high scores from being seen while quiz is going on
+function disableHighScore(){
+  document.getElementById("initialsList").style.display = "none";
+  document.getElementById("scoreList").style.display = "none";
+}
+
 // function hides quiz questions and choices and makes a calculate score button appear
 function showResults(){
 displayAnswers.style.display = "none";
@@ -190,15 +198,19 @@ input.style.display = "block";
 
 viewHighScores.addEventListener("click", function(event){
   event.preventDefault();
+  // Allows the high scores to be viewed once the quiz is over
+  document.getElementById("initialsList").style.display = "block";
+  document.getElementById("scoreList").style.display = "block";
   highScore();
   highScorePoints();
 
 
 })
 
-// SAVE user initials
+//******************** */ SAVE user initials*************************
 submitInitials.addEventListener("click", function(event) {
   event.preventDefault();
+  // Only allows the button to be pressed once
   document.getElementById("submitInitials").disabled = "true";
 
   var userInitials = userInput.value.trim();
