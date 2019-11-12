@@ -11,10 +11,13 @@ locally stored user initials and scores.
 ![Web_Page_OnLoad](/assets/images/webpagloaded.png?raw=true "Optional Title")
 
 Once the user clicks "start" the time starts counting down.  In javascript, I used code to set the timer for 7 seconds per question. No matter how many questions I added or deleted the code would adjust the timer to allow for this.
+![timer-loaded](/assets/images/timerTime.png?raw=true "Optional Title")
 
 If the timer gets down to 10 seconds or less, the timer font size increases and font color turns red.
+![Out-of-time](/assets/images/redTimer.png?raw=true "Optional Title")
 
 Once the user answers all of the questions or the timer runs out, a button appears for the user to click to see their score. Their score appears on the screen along with a text field where they can enter their initials and save their score with their initials into local storage.  Both buttons (the "calculate score" button and the "submit" button for the initials) are set up to only allow the user to click them once.
-
+![Calculate_Score](/assets/images/endOfQuiz.png?raw=true "Optional Title")
+![High_scores](/assets/images/viewHighScores.png?raw=true "Optional Title")
 >>>>>>> 640758703a687abad1d91f31b4411607db4a47d0
 
